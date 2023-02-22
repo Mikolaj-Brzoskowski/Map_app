@@ -1,5 +1,4 @@
 import { Routes, Route } from 'react-router-dom';
-import './App.css';
 import AdressForm from './components/AdressForm';
 import Home from './components/Home';
 import NavBar from './components/NavBar';
@@ -15,7 +14,6 @@ function App() {
       <Route path="/route" element={<RouteCalculation/>}></Route>
     </Routes>
     </div>
-    
   );
 }
 
