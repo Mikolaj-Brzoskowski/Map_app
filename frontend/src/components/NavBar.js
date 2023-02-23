@@ -1,5 +1,6 @@
 import React from 'react'
 import { Navbar, Container, Nav, NavDropdown } from 'react-bootstrap'
+import { HashLink } from 'react-router-hash-link'
 
 const NavBar = () => {
   return (
@@ -17,7 +18,7 @@ const NavBar = () => {
           <Nav className="me-auto">
             <Nav.Link href="/">Home</Nav.Link>
             <Nav.Link href="/form">Route Calculation</Nav.Link>
-            <Nav.Link href="/#history">History</Nav.Link>
+            <Nav.Link><HashLink to="/#history" className="text-decoration-none text-reset">History</HashLink></Nav.Link>
           </Nav>
         </Container>
       </Navbar>
