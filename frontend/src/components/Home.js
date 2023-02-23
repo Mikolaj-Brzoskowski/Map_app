@@ -13,7 +13,7 @@ const Home = () => {
           <h1 className="text-center">History</h1>
       </Row>
       <Row>
-        <Col className="d-flex justify-content-center m-1">
+        <Col className="d-flex justify-content-center m-1" key="history-0">
           <Card style={{ width: '18rem' }}>
             <Card.Body>
               <Card.Title>From: Starting address</Card.Title>
@@ -25,8 +25,8 @@ const Home = () => {
             </Card.Body>
           </Card>
         </Col>
-        {Array(4).fill().map(() => (
-        <Col className="d-flex justify-content-center m-1">
+        {Array(4).fill().map((e, idx) => (
+        <Col className="d-flex justify-content-center m-1" key={`history-${idx}`}>
           <Card style={{ width: '18rem' }}>
             <Card.Body>
               <Placeholder as={Card.Title} animation="glow">

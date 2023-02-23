@@ -18,7 +18,7 @@ const NavBar = () => {
           <Nav className="me-auto">
             <Nav.Link href="/">Home</Nav.Link>
             <Nav.Link href="/form">Route Calculation</Nav.Link>
-            <Nav.Link><HashLink to="/#history" className="text-decoration-none text-reset">History</HashLink></Nav.Link>
+            <Nav.Link as="div"><HashLink to="/#history" className="text-decoration-none text-reset">History</HashLink></Nav.Link>
           </Nav>
         </Container>
       </Navbar>
