@@ -1,5 +1,5 @@
 import { Routes, Route } from 'react-router-dom';
-import AdressForm from './components/AdressForm';
+import AddressForm from './components/AddressForm';
 import Home from './components/Home';
 import NavBar from './components/NavBar';
 import RouteCalculation from './components/RouteCalculation';
@@ -10,7 +10,7 @@ function App() {
     <NavBar/>
     <Routes>
       <Route path="/" element={<Home/>}></Route>
-      <Route path="/form" element={<AdressForm/>}></Route>
+      <Route path="/form" element={<AddressForm/>}></Route>
       <Route path="/route" element={<RouteCalculation/>}></Route>
     </Routes>
     </div>
