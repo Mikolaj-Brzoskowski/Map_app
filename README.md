@@ -9,7 +9,7 @@
 - page with calculations:
     - ~~map~~ (drawing route TODO)
     - data about calculation
-    - ~~cost input~~ (saving into variable TODO)
+    - ~~cost input (saving into variable TODO)~~
     - pdf download
 - routes history:
     - ~~interface~~
