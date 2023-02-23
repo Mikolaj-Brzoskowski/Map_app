@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Container, Row, InputGroup, Form, Col, Button } from 'react-bootstrap'
 import {MapContainer, TileLayer, useMap, Marker, Popup } from 'react-leaflet'
 import { Download } from 'react-bootstrap-icons'
@@ -14,6 +14,17 @@ function MapPlaceholder() {
 }
 
 const RouteCalculation = () => {
+
+  const [cost, setCost ] = useState(0)
+
+  const handleDownload = (e) => {
+    //generate pdf
+  }
+
+  const handleChange = (e) => {
+    setCost(e.target.value);
+  }
+  
   return (
     <Container className="p-3">
       <Row>
@@ -35,11 +46,11 @@ const RouteCalculation = () => {
         <Col md="6">
           <InputGroup> {/*className="mb-3"*/}
             <InputGroup.Text>Cost per kilometer</InputGroup.Text>
-            <Form.Control type="number" aria-label="Cost per kilometer" defaultValue={0}/>
+            <Form.Control type="number" aria-label="Cost per kilometer" defaultValue={cost} onChange={(e) => handleChange(e)}/>
           </InputGroup>
         </Col>
         <Col className="d-flex justify-content-center">
-          <Button type="button" variant="primary" className="w-50 m-4 m-md-0"><Download size={20} /> Download calculation</Button>
+          <Button type="button" variant="primary" className="w-50 m-4 m-md-0" onClick={(e) => handleDownload(e)}><Download size={20}/>&emsp;Download calculation</Button>
         </Col>
       </Row>
     </Container>
