@@ -3,6 +3,7 @@
 ## To Do
 ### Backend
 - literally everything
+- ~~connecting to .HERE Geolocal API and markers on map~~
 ### Frontend
 - ~~pages with routing~~
 - ~~form for starting/ending point~~

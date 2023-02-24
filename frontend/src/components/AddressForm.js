@@ -4,6 +4,8 @@ import { Formik, ErrorMessage } from 'formik'
 import * as Yup from 'yup'
 import countries from '../countries.json'
 import { useNavigate } from 'react-router-dom'
+import { GetGeolocationAction } from '../features/geolocationSlice'
+import { useDispatch } from 'react-redux'
 
 const YupValidation = Yup.object().shape({
   start_street_name: Yup.string()
@@ -54,9 +56,10 @@ const initValues = {
 const StartingAdressForm = () => {
 
   const navigate = useNavigate()
+  const dispatch = useDispatch()
 
-  const handleSubmit = (values) => {
-    console.log(values);
+  const handleSubmit = async (values) => {
+    await dispatch(GetGeolocationAction(values));
     navigate('/route')
   }
 
@@ -106,14 +109,14 @@ const StartingAdressForm = () => {
                   <FloatingLabel className="mb-3" controlId="formStartCountry" label="Country*">
                     <Form.Select value={values.start_country} name="start_country" onChange={handleChange}>
                         {countries.map((start_country) => {
-                          return <option key={start_country.code} value={start_country.code}>{start_country.name}</option>
+                          return <option key={start_country.code} value={start_country.name}>{start_country.name}</option>
                         })}
                     </Form.Select>
                     <ErrorMessage name="start_country">{msg => <div className="alert alert-danger" role="alert">{msg}</div>}</ErrorMessage>
                   </FloatingLabel>
                 </Col>
               </Row>
-              <Form.Label className='fs-3'>Ending Point</Form.Label>
+              <Form.Label className='fs-3'>Destination Point</Form.Label>
               <Row>
                 <Col>
                   <FloatingLabel className="mb-3 required" controlId="formEndStreetName" label="Street name*">
@@ -147,7 +150,7 @@ const StartingAdressForm = () => {
                   <FloatingLabel className="mb-3" controlId="formEndCountry" label="Country*">
                     <Form.Select value={values.end_country} name="end_country" onChange={handleChange}>
                         {countries.map((end_country) => {
-                          return <option key={end_country.code} value={end_country.code}>{end_country.name}</option>
+                          return <option key={end_country.code} value={end_country.name}>{end_country.name}</option>
                         })}
                     </Form.Select>
                     <ErrorMessage name="end_country">{msg => <div className="alert alert-danger" role="alert">{msg}</div>}</ErrorMessage>

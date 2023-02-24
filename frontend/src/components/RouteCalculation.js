@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Container, Row, InputGroup, Form, Col, Button } from 'react-bootstrap'
-import {MapContainer, TileLayer, useMap, Marker, Popup } from 'react-leaflet'
+import {MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
 import { Download } from 'react-bootstrap-icons'
+import { useSelector, useDispatch } from 'react-redux'
 
 
 function MapPlaceholder() {
@@ -14,6 +15,11 @@ function MapPlaceholder() {
 }
 
 const RouteCalculation = () => {
+
+  const sourcePosition = useSelector(state => state.geolocation.sourcePosition)
+  const targetPosition = useSelector(state => state.geolocation.targetPosition)
+  const sourceAddress = useSelector(state => state.geolocation.sourceAddress)
+  const targetAddress = useSelector(state => state.geolocation.targetAddress)
 
   const [cost, setCost ] = useState(0)
 
@@ -29,14 +35,19 @@ const RouteCalculation = () => {
     <Container className="p-3">
       <Row>
         <Col>
-        <MapContainer center={[51.505, -0.09]} zoom={13} scrollWheelZoom={false} placeholder={<MapPlaceholder />}>
+        <MapContainer center={[sourcePosition.lat, sourcePosition.lng]} zoom={13} scrollWheelZoom={false} placeholder={<MapPlaceholder />}>
           <TileLayer
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
-          <Marker position={[51.505, -0.09]}>
+          <Marker position={[sourcePosition.lat, sourcePosition.lng]}>
             <Popup>
-              A pretty CSS3 popup. <br /> Easily customizable.
+              {sourceAddress.label}
+            </Popup>
+          </Marker>
+          <Marker position={[targetPosition.lat, targetPosition.lng]}>
+            <Popup>
+            {targetAddress.label}
             </Popup>
           </Marker>
         </MapContainer>

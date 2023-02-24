@@ -1,8 +1,10 @@
 import React from 'react'
-import { Navbar, Container, Nav, NavDropdown } from 'react-bootstrap'
+import { Navbar, Container, Nav } from 'react-bootstrap'
 import { HashLink } from 'react-router-hash-link'
+import { Link } from 'react-router-dom'
 
 const NavBar = () => {
+
   return (
     <Navbar bg="dark" variant="dark" sticky="top">
         <Container className={"m-0"}>
@@ -16,8 +18,8 @@ const NavBar = () => {
             />
             </Navbar.Brand>
           <Nav className="me-auto">
-            <Nav.Link href="/">Home</Nav.Link>
-            <Nav.Link href="/form">Route Calculation</Nav.Link>
+            <Nav.Link as="div"><Link to="/" className="text-decoration-none text-reset">Home</Link></Nav.Link>
+            <Nav.Link as="div"><Link to="/form" className="text-decoration-none text-reset">Route Calculation</Link></Nav.Link>
             <Nav.Link as="div"><HashLink to="/#history" className="text-decoration-none text-reset">History</HashLink></Nav.Link>
           </Nav>
         </Container>
