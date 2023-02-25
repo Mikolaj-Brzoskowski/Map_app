@@ -1,8 +1,13 @@
 import React from 'react'
 import { Container, Row, Col, Card, Button, Placeholder } from 'react-bootstrap'
+import { useSelector } from 'react-redux'
 import { lorem_ipsum } from '../lorem_ipsum'
+import { Link } from 'react-router-dom'
 
 const Home = () => {
+
+  const history = useSelector(state => state.history)
+
   return (
     <Container>
       <Row>
@@ -13,32 +18,16 @@ const Home = () => {
           <h1 className="text-center">History</h1>
       </Row>
       <Row>
-        <Col className="d-flex justify-content-center m-1" key="history-0">
+        {history.history.map( (el, i) => (
+          <Col className="d-flex justify-content-center m-1" key={`${i}`}>
           <Card style={{ width: '18rem' }}>
             <Card.Body>
-              <Card.Title>From: Starting address</Card.Title>
-              <Card.Title>To: Ending address</Card.Title>
+              <Card.Title>From: {el.sourceAddress.label}</Card.Title>
+              <Card.Title>To: {el.targetAddress.label}</Card.Title>
               <Card.Text>
-                Cost: Here will go cost of the trip
+                Distance: {Math.round((el.summary.length / 1000) * 100) / 100}km 
               </Card.Text>
-              <Button variant="primary">Go to the details with route</Button>
-            </Card.Body>
-          </Card>
-        </Col>
-        {Array(4).fill().map((e, idx) => (
-        <Col className="d-flex justify-content-center m-1" key={`history-${idx}`}>
-          <Card style={{ width: '18rem' }}>
-            <Card.Body>
-              <Placeholder as={Card.Title} animation="glow">
-                <Placeholder xs={3} /> <Placeholder xs={6} />
-              </Placeholder>
-              <Placeholder as={Card.Title} animation="glow">
-                <Placeholder xs={2} /> <Placeholder xs={6} />
-              </Placeholder>
-              <Placeholder as={Card.Text} animation="glow">
-                <Placeholder xs={3} /> <Placeholder xs={8} />
-              </Placeholder>
-              <Placeholder.Button variant="primary" xs={10} />
+              <Button variant="primary"><Link to={`/history/${i}`} className="text-decoration-none text-reset">Go to the route details</Link></Button>
             </Card.Body>
           </Card>
         </Col>
