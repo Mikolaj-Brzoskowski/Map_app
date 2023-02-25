@@ -1,10 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit'
-import geolocationReducer from './features/geolocationSlice'
+import HereDataSlice from './features/HereDataSlice'
 import logger from './logger'
+import historyReducer from './features/HistorySlice'
 
 export default configureStore({
   reducer: {
-    geolocation: geolocationReducer
+    heredata: HereDataSlice,
+    history: historyReducer
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
 })
