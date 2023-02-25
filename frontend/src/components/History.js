@@ -42,7 +42,7 @@ const History = () => {
         <Container className="p-3" id="calculation">
             <Row>
             <Col>
-            <MapContainer center={[sourcePosition.lat, sourcePosition.lng]} zoom={13} scrollWheelZoom={false} placeholder={<MapPlaceholder />}>
+            <MapContainer center={[sourcePosition.lat, sourcePosition.lng]} scrollWheelZoom={true} placeholder={<MapPlaceholder/>} bounds={[[sourcePosition.lat, sourcePosition.lng],[targetPosition.lat, targetPosition.lng]]}>
                 <TileLayer
                 attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -76,16 +76,15 @@ const History = () => {
             </Col>
             </Row>
             <Row>
-            <Col>
-                {Object.keys(summary).map( (key) => (
-                <div key={key}>
-                {key}: {summary[key]}
-                </div>))}
-            </Col>
-            <Col>
-                Cost of trip: <br/>
-                {Math.round(((summary.length / 1000) * cost) * 1.1 * 100) / 100}
-            </Col>
+                <Col>
+                    Duration: {Math.round(summary.duration / 60)} min
+                </Col>
+                <Col>
+                    Distance: {summary.length / 1000}km
+                </Col>
+                <Col>
+                    Cost of trip: {Math.round(((summary.length / 1000) * cost) * 1.1 * 100) / 100}
+                </Col>
             </Row>
             <Row>
             <Col>

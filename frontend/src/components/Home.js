@@ -21,13 +21,14 @@ const Home = () => {
         {history.history.map( (el, i) => (
           <Col className="d-flex justify-content-center m-1" key={`${i}`}>
           <Card style={{ width: '18rem' }}>
-            <Card.Body>
+            <Card.Body className='d-flex flex-column'>
               <Card.Title>From: {el.sourceAddress.label}</Card.Title>
               <Card.Title>To: {el.targetAddress.label}</Card.Title>
               <Card.Text>
+                Duration: {Math.round(el.summary.duration / 60)} min <br/>
                 Distance: {Math.round((el.summary.length / 1000) * 100) / 100}km 
               </Card.Text>
-              <Button variant="primary"><Link to={`/history/${i}`} className="text-decoration-none text-reset">Go to the route details</Link></Button>
+              <Button variant="primary" className='mt-auto'><Link to={`/history/${i}`} className="text-decoration-none text-reset">Go to the route details</Link></Button>
             </Card.Body>
           </Card>
         </Col>
