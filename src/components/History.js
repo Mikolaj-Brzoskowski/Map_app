@@ -86,7 +86,9 @@ const History = () => {
             </Row>
             </div>
             <Row className="d-flex justify-content-center m-3">
-            <PDF targetRef={ref} filename="calculation.pdf" scale={0.85}>
+            <PDF targetRef={ref} filename="calculation.pdf" scale={0.8} options={{
+              orientation: "landscape",
+            }}>
                 {({toPdf}) => (
                     <Button type="button" variant="primary" className="w-50 m-4 m-md-0" onClick={toPdf}><Download size={20}/>&emsp;Download calculation</Button>
                 )}

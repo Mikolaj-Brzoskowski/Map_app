@@ -8,7 +8,6 @@ import { useNavigate } from 'react-router-dom'
 import { SAVE_TO_HISTORY } from '../features/HistorySlice'
 import PDF from 'react-to-pdf'
 
-
 function MapPlaceholder() {
   return (
     <p>
@@ -63,7 +62,7 @@ const RouteCalculation = () => {
     return (
       <Container className="p-3">
         <div ref={ref}>
-        <Row>
+        <Row className="p-3 m-3">
           <Col>
           <MapContainer center={[sourcePosition.lat, sourcePosition.lng]} scrollWheelZoom={true} placeholder={<MapPlaceholder/>} bounds={[[sourcePosition.lat, sourcePosition.lng],[targetPosition.lat, targetPosition.lng]]}>
             <TileLayer
@@ -106,7 +105,9 @@ const RouteCalculation = () => {
         </Row>
         </div>
         <Row className="d-flex justify-content-center m-3">
-          <PDF targetRef={ref} filename="calculation.pdf" scale={0.85}>
+          <PDF targetRef={ref} filename="calculation.pdf" scale={0.8} options={{
+              orientation: "landscape",
+            }} >
             {({toPdf}) => (
                 <Button type="button" variant="primary" className="w-50 m-4 m-md-0" onClick={toPdf}><Download size={20}/>&emsp;Download calculation</Button>
             )}
