@@ -1,19 +1,23 @@
 # Map_app
+Basic React application that takes two adresses and returns (via .HERE api) route on the Leaflet map, estimated duration of trip and length of route.
+It also contains basic calculation of cost trip (based of user input - cost per kilometer), state history of routes search and avialibity of exporting it to PDF (doesn't always work properly)
 
-## To Do
-### ~~Backend (not needed)~~
-- ~~connecting to .HERE Geolocal API and markers on map~~
-### Frontend
-- ~~pages with routing~~
-- ~~form for starting/ending point~~
-- page with calculations:
-    - ~~map (drawing route TODO)~~
-    - ~~data about calculation~~
-    - ~~cost input (saving into variable TODO)~~
-    - ~~pdf download (TODO fix ratio and map not adding to PDF)~~ (sometimes doesnt generate calc values - pdf scale depends on map scale/position (?) )
-    - maybe adding route instructions to map/pdf
-- ~~routes history~~:
-    - ~~interface~~
-    - ~~saving history until page is refreshed (use of state(???))~~
+## Functionality
+- pages with routing (using react-router-dom)
+- tagret/destionation form
+- Leaflet map with route and markers given by .HERE Api
+- Basic calculation
+- Estimated duration and length of route
+- PDF Download (scale needs to be fixed/functionality to be rewritten)
+- Routes History
+
+## ToDo
+### Functionality
+- specific route instructions (using .HERE return=instructions from /routes)
 ### Tests
-- literally everything
+- .HERE Api axios tests
+- Formik validation tests
+
+
+
+
