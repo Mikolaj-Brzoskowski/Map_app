@@ -76,10 +76,12 @@ const StartingAdressForm = () => {
       setFirstRender(false);
       return;
     }
-    const fetchData = async () => {
-      await dispatch(GetSummaryAndPolyline(sourcePosition, targetPosition))
+    else if (Object.keys(targetPosition).length !== 0){
+      const fetchData = async () => {
+        await dispatch(GetSummaryAndPolyline(sourcePosition, targetPosition))
+      }
+      fetchData().then(navigate('/route'));
     }
-    fetchData().then(navigate('/route'));
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [targetPosition])
 

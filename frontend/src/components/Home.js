@@ -1,5 +1,5 @@
 import React from 'react'
-import { Container, Row, Col, Card, Button, Placeholder } from 'react-bootstrap'
+import { Container, Row, Col, Card, Button } from 'react-bootstrap'
 import { useSelector } from 'react-redux'
 import { lorem_ipsum } from '../lorem_ipsum'
 import { Link } from 'react-router-dom'
