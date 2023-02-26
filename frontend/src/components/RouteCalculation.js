@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react'
-import { Container, Row, InputGroup, Form, Col } from 'react-bootstrap'
+import { Container, Row, InputGroup, Form, Col, Button } from 'react-bootstrap'
+import { Download } from 'react-bootstrap-icons'
 import { MapContainer, TileLayer, Marker, Popup, Polyline, FeatureGroup } from 'react-leaflet'
-import PdfGenerator from './PDFGen'
 import { useSelector, useDispatch } from 'react-redux'
 import { decode } from '../flexible-polyline/index'
 import { useNavigate } from 'react-router-dom'
 import { SAVE_TO_HISTORY } from '../features/HistorySlice'
+import PDF from 'react-to-pdf'
 
 
 function MapPlaceholder() {
@@ -32,6 +33,8 @@ const RouteCalculation = () => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
 
+  const ref = React.createRef();
+
   useEffect(() => {
     if (summary === "") {
       setStateLoaded(false)
@@ -57,7 +60,8 @@ const RouteCalculation = () => {
 
   if(stateLoaded) {
     return (
-      <Container className="p-3" id="calculation">
+      <Container className="p-3">
+        <div ref={ref}>
         <Row>
           <Col>
           <MapContainer center={[sourcePosition.lat, sourcePosition.lng]} scrollWheelZoom={true} placeholder={<MapPlaceholder/>} bounds={[[sourcePosition.lat, sourcePosition.lng],[targetPosition.lat, targetPosition.lng]]}>
@@ -81,19 +85,12 @@ const RouteCalculation = () => {
           </MapContainer>
           </Col>
         </Row>
+        <br/>
         <Row className="m-3">
-          <Col md="6">
-            <InputGroup> {/*className="mb-3"*/}
+            <InputGroup>
               <InputGroup.Text>Cost per kilometer</InputGroup.Text>
               <Form.Control type="number" aria-label="Cost per kilometer" defaultValue={cost} onChange={(e) => handleChange(e)}/>
             </InputGroup>
-          </Col>
-          <Col className="d-flex justify-content-center">
-            <PdfGenerator 
-            downloadFileName="Calculation" 
-            rootElementId="calculation" 
-            />
-          </Col>
         </Row>
         <Row>
           <Col>
@@ -106,11 +103,13 @@ const RouteCalculation = () => {
             Cost of trip: {Math.round(((summary.length / 1000) * cost) * 1.1 * 100) / 100}
           </Col>
         </Row>
-        <Row>
-          <Col>
-          </Col>
-          <Col>
-          </Col>
+        </div>
+        <Row className="d-flex justify-content-center m-3">
+          <PDF targetRef={ref} filename="calculation.pdf" scale={0.85}>
+            {({toPdf}) => (
+                <Button type="button" variant="primary" className="w-50 m-4 m-md-0" onClick={toPdf}><Download size={20}/>&emsp;Download calculation</Button>
+            )}
+          </PDF>
         </Row>
       </Container>
     )
