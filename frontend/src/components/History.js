@@ -3,7 +3,7 @@ import { Container, Row, InputGroup, Form, Col, Button } from 'react-bootstrap'
 import { Download } from 'react-bootstrap-icons'
 import { MapContainer, TileLayer, Marker, Popup, Polyline, FeatureGroup } from 'react-leaflet'
 import { useSelector } from 'react-redux'
-import { decode } from '../flexible-polyline/index'
+import { decode } from '../flexible-polyline/index.js'
 import { useNavigate, useParams } from 'react-router-dom'
 import PDF from 'react-to-pdf'
 

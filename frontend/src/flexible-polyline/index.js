@@ -18,17 +18,17 @@ const DECODING_TABLE = [
 
 const FORMAT_VERSION = 1;
 
-const ABSENT = 0;
-const LEVEL = 1;
-const ALTITUDE = 2;
-const ELEVATION = 3;
+export const ABSENT = 0;
+export const LEVEL = 1;
+export const ALTITUDE = 2;
+export const ELEVATION = 3;
 // Reserved values 4 and 5 should not be selectable
 const CUSTOM1 = 6;
 const CUSTOM2 = 7;
 
 const Num = typeof BigInt !== "undefined" ? BigInt : Number;
 
-function decode(encoded) {
+export function decode(encoded) {
     const decoder = decodeUnsignedValues(encoded);
     const header = decodeHeader(decoder[0], decoder[1]);
 
@@ -119,7 +119,7 @@ function toSigned(val) {
     return +res.toString();
 }
 
-function encode({ precision = DEFAULT_PRECISION, thirdDim = ABSENT, thirdDimPrecision = 0, polyline }) {
+export function encode({ precision = DEFAULT_PRECISION, thirdDim = ABSENT, thirdDimPrecision = 0, polyline }) {
     // Encode a sequence of lat,lng or lat,lng(,{third_dim}). Note that values should be of type BigNumber
     //   `precision`: how many decimal digits of precision to store the latitude and longitude.
     //   `third_dim`: type of the third dimension if present in the input.
@@ -192,13 +192,3 @@ function encodeScaledValue(value) {
 
     return encodeUnsignedNumber(numVal);
 }
-
-module.exports = {
-    encode,
-    decode,
-
-    ABSENT,
-    LEVEL,
-    ALTITUDE,
-    ELEVATION,
-};
