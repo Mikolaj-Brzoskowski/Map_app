@@ -1,7 +1,7 @@
 {
   "name": "frontend",
   "version": "0.1.0",
-  "homepage": "https://mikolaj-brzoskowski.github.io",
+  "homepage": "https://MB-MapApp.com",
   "private": true,
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.3",
